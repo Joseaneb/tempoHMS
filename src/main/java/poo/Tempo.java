@@ -6,6 +6,44 @@ public class Tempo {
     private int minutos;
     private int segundos;
 
+    public Tempo(Tempo objeto){
+
+    }
+
+    public Tempo(int segundos){
+
+    }
+    public Tempo(int hora, int minutos, int segundos){
+
+        horaCerta(testarHora(hora, minutos, segundos), hora, minutos, segundos);
+    }
+
+    public long toSeconds(){
+
+        return ((hora * (60 * 60)) + (minutos * 60) + segundos);
+    }
+
+    public long diferenca(Tempo objeto){
+
+        return (((objeto.hora * (60 * 60)) + (objeto.minutos * 60) + objeto.segundos) - ((hora * (60 * 60))
+                + (minutos * 60) + segundos));
+    }
+
+
+    public boolean setFullHora(int hora, int minutos, int segundos) {
+
+        if (testarHora(hora, minutos, segundos) == true) {
+
+            this.hora = hora;
+            this.minutos = minutos;
+            this.segundos = segundos;
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
     /**
      * Seta Hora
      *
@@ -13,33 +51,39 @@ public class Tempo {
      *
      */
 
-    public void setHora(int hora) {
-        if(testarHora(hora,1,1) == true) {
+    public boolean setHora(int hora) {
+        if (testarHora(hora, 1, 1) == true){
+
             this.hora = hora;
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+    public boolean setMinuto(int minutos) {
+
+        if (testarHora(1, minutos, 1) == true) {
+
+            this.minutos = minutos;
+            return true;
+        } else {
+
+            return false;
         }
     }
 
-    /**
-     * Seta Minutos
-     *
-     * @param minutos
-     */
+    public boolean setSegundos(int segundos){
 
-    public void setMinutos(int minutos) {
-        this.minutos = minutos;
+        if (testarHora(1, 1, segundos) == true){
+
+            this.segundos = segundos;
+            return true;
+        } else {
+
+            return false;
+        }
     }
-
-    /**
-     * Seta Segundos
-     *
-     * @param segundos
-     */
-
-    public void setSegundos(int segundos) {
-        this.segundos = segundos;
-
-    }
-
     /**
      * Testa Hora, Minutos e Segundos, se estiver dentro do parametro indicado no "if" retorna true, "else" false
      * @param hora para Hora maior e igual a 0 e menor e igual a 23 true
